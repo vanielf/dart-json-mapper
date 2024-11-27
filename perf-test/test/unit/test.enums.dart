@@ -1,6 +1,18 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:test/test.dart';
-import 'package:unit_testing/unit_testing.dart' show compactOptions, Color;
+import 'package:unit_testing/unit_testing.dart' show Color;
+
+@jsonSerializable
+// Case style is camelCase which is default for Dart
+enum EDeviceRadioType { loRa, nBIoT, mBus, mobileInternet, wMBus }
+
+@jsonSerializable
+@Json(caseStyle: CaseStyle.pascal)
+// Case style is Pascal which is inferred by class annotation
+class PascalCaseModel {
+  String? id;
+  EDeviceRadioType radio = EDeviceRadioType.loRa;
+}
 
 enum ThirdParty { A, B, C }
 
@@ -89,7 +101,7 @@ void testEnums() {
           JsonMapperAdapter(enumValues: {ThirdParty: ThirdParty.values});
       JsonMapper().useAdapter(adapter);
 
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<ShortEnumConverter>(targetJson)!;
 
       // then
@@ -104,7 +116,7 @@ void testEnums() {
       final instance = Color.green;
 
       // when
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<Color>(targetJson);
 
       // then
@@ -150,7 +162,7 @@ void testEnums() {
       final instance = <Color, int>{Color.black: 1, Color.blue: 2};
 
       // when
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize(
           targetJson, DeserializationOptions(template: <Color, int>{}));
 
@@ -175,7 +187,7 @@ void testEnums() {
       final split = Split(map);
 
       // when
-      final targetJson = JsonMapper.serialize(split, compactOptions);
+      final targetJson = JsonMapper.serialize(split);
       final instance = JsonMapper.deserialize<Split>(targetJson)!;
 
       // then
@@ -198,7 +210,7 @@ void testEnums() {
       final split = SplitModel(map);
 
       // when
-      final targetJson = JsonMapper.serialize(split, compactOptions);
+      final targetJson = JsonMapper.serialize(split);
       final instance = JsonMapper.deserialize<SplitModel>(targetJson)!;
 
       // then
@@ -208,12 +220,52 @@ void testEnums() {
       expect(instance.values[Category.second]!.primary, '2');
     });
 
+    test('Should retain style casing transparently', () {
+      // given
+      const json = '[{ "Id": "6267a8bf0a66709b2c7021bd", "Radio": "WMBus" }]';
+      const jsonPascal = '["WMBus","MobileInternet","LoRa","NBIoT","MBus"]';
+      const jsonKebab =
+          '["w-m-bus","mobile-internet","lo-ra","n-b-io-t","m-bus"]';
+
+      // when
+      final target = JsonMapper.deserialize<List<PascalCaseModel>>(json);
+      final targetPascal = JsonMapper.deserialize<List<EDeviceRadioType>>(
+          jsonPascal, DeserializationOptions(caseStyle: CaseStyle.pascal));
+      final targetKebab = JsonMapper.deserialize<List<EDeviceRadioType>>(
+          jsonKebab, DeserializationOptions(caseStyle: CaseStyle.kebab));
+      final targetPascalJson = JsonMapper.serialize([
+        EDeviceRadioType.wMBus,
+        EDeviceRadioType.mobileInternet,
+        EDeviceRadioType.loRa,
+        EDeviceRadioType.nBIoT,
+        EDeviceRadioType.mBus
+      ], SerializationOptions(caseStyle: CaseStyle.pascal));
+
+      // then
+      expect(targetPascalJson, jsonPascal);
+      expect(target!.first.radio, EDeviceRadioType.wMBus);
+      expect(targetPascal, [
+        EDeviceRadioType.wMBus,
+        EDeviceRadioType.mobileInternet,
+        EDeviceRadioType.loRa,
+        EDeviceRadioType.nBIoT,
+        EDeviceRadioType.mBus
+      ]);
+      expect(targetKebab, [
+        EDeviceRadioType.wMBus,
+        EDeviceRadioType.mobileInternet,
+        EDeviceRadioType.loRa,
+        EDeviceRadioType.nBIoT,
+        EDeviceRadioType.mBus
+      ]);
+    });
+
     test('Enum Iterable instance', () {
       // given
       final instance = <Color>[Color.black, Color.blue];
 
       // when
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final targetList = JsonMapper.deserialize<List<Color>>(targetJson)!;
       final targetSet = JsonMapper.deserialize<Set<Color>>(targetJson)!;
 
@@ -256,7 +308,7 @@ void testEnums() {
       });
       JsonMapper().useAdapter(adapter);
 
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<EnumIterables>(targetJson)!;
 
       JsonMapper().removeAdapter(adapter);
@@ -288,7 +340,7 @@ void testEnums() {
           colorsSet: <Color>{Color.black, Color.blue});
 
       // when
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target =
           JsonMapper.deserialize<EnumIterablesWithConstructor>(targetJson)!;
 
@@ -320,7 +372,7 @@ void testEnums() {
       // when
       JsonMapper().useAdapter(adapter);
 
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<List<ThirdParty>>(json);
 
       JsonMapper().removeAdapter(adapter);
@@ -348,7 +400,7 @@ void testEnums() {
       // when
       JsonMapper().useAdapter(adapter);
 
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<List<ThirdParty>>(targetJson);
 
       JsonMapper().removeAdapter(adapter);
@@ -376,7 +428,7 @@ void testEnums() {
       // when
       JsonMapper().useAdapter(adapter);
 
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<List<ThirdParty>>(targetJson);
 
       JsonMapper().removeAdapter(adapter);
@@ -417,7 +469,7 @@ void testEnums() {
       // when
       JsonMapper().useAdapter(adapter);
 
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<ShortEnumConverter>(targetJson)!;
 
       JsonMapper().removeAdapter(adapter);
@@ -449,7 +501,7 @@ void testEnums() {
       // when
       JsonMapper().useAdapter(adapter);
 
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
       final target =
           JsonMapper.deserialize<EnumMappingsOverrideTest>(targetJson)!;
 

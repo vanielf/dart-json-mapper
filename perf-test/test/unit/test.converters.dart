@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:test/test.dart';
 import 'package:unit_testing/unit_testing.dart'
-    show compactOptions, Car, Color, MyCarModel, Immutable;
+    show defaultOptions, Car, Color, MyCarModel, Immutable;
 
 @jsonSerializable
 enum MyEnumA { first, second }
@@ -158,7 +158,7 @@ void testConverters() {
 
         // when
         final target = JsonMapper.deserialize<ListDelimiter>(json)!;
-        final targetJson = JsonMapper.serialize(instance, compactOptions);
+        final targetJson = JsonMapper.serialize(instance);
 
         // then
         expect(targetJson, json);
@@ -261,7 +261,9 @@ void testConverters() {
       expect(json, '"$source"');
       expect(target.pattern, instance.pattern);
       expect(target, TypeMatcher<RegExp>());
-      expect(target, instance);
+      if (!kIsWeb) {
+        expect(target, instance);
+      }
     });
 
     test('UriConverter', () {
@@ -285,8 +287,8 @@ void testConverters() {
       final json = '{"bigInt":"$rawString"}';
 
       // when
-      final targetJson = JsonMapper.serialize(
-          BigIntData(BigInt.parse(rawString)), compactOptions);
+      final targetJson =
+          JsonMapper.serialize(BigIntData(BigInt.parse(rawString)));
       // then
       expect(targetJson, json);
 
@@ -299,11 +301,24 @@ void testConverters() {
     test('Uint8List converter', () {
       // given
       final json = '{"data":"QmFzZTY0IGlzIHdvcmtpbmch"}';
+      final emptyJson = '"AAAAAAAAAAAAAA=="';
+      final emptyListsJson = '["AAAAAAA=","AAAAAAA="]';
       final rawString = r'Base64 is working!';
 
       // when
+      final emptyListJson = JsonMapper.serialize(Uint8List(10));
+      // then
+      expect(emptyListJson, emptyJson);
+
+      // when
+      final targetEmptyListsJson =
+          JsonMapper.serialize([Uint8List(5), Uint8List(5)]);
+      // then
+      expect(targetEmptyListsJson, emptyListsJson);
+
+      // when
       final targetJson = JsonMapper.serialize(
-          BinaryData(Uint8List.fromList(rawString.codeUnits)), compactOptions);
+          BinaryData(Uint8List.fromList(rawString.codeUnits)));
       // then
       expect(targetJson, json);
 
@@ -320,7 +335,7 @@ void testConverters() {
       foo['bar'] = Car('Tesla S3', Color.black);
 
       // when
-      final json = JsonMapper.serialize(foo, compactOptions);
+      final json = JsonMapper.serialize(foo);
 
       // then
       expect(json, targetJson);
@@ -340,7 +355,7 @@ void testConverters() {
       JsonMapper().useAdapter(adapter);
 
       // when
-      final json = JsonMapper.serialize(instance, compactOptions);
+      final json = JsonMapper.serialize(instance);
       final target = JsonMapper.deserialize<Map<String, bool>>(json);
 
       // then
@@ -366,7 +381,7 @@ void testConverters() {
 
       final i = Immutable(1, 'Bob', Car('Audi', Color.green));
       // when
-      final target = JsonMapper.serialize(i);
+      final target = JsonMapper.serialize(i, defaultOptions);
       // then
       expect(target, json);
 
@@ -414,7 +429,7 @@ void testConverters() {
 
       final instance = NumericEnum(NumericEnumTestColor.grayMetallic);
       // when
-      final target = JsonMapper.serialize(instance, compactOptions);
+      final target = JsonMapper.serialize(instance);
       // then
       expect(target, json);
 

@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'index.dart';
 
 typedef SerializeObjectFunction = dynamic Function(
-    Object object, SerializationContext context);
+    Object? object, SerializationContext context);
 typedef DeserializeObjectFunction = dynamic Function(
     dynamic object, DeserializationContext context, Type type);
 typedef GetConverterFunction = ICustomConverter? Function(
@@ -173,14 +173,17 @@ class EnumConverterShort implements ICustomConverter, ICustomEnumConverter {
 
   @override
   Object? fromJSON(dynamic jsonValue, DeserializationContext context) {
+    dynamic transformDescriptorValue(value) =>
+        _transformValue(value, context, doubleMapping: true);
+    dynamic transformJsonValue(value) =>
+        _transformValue(value, context, preTransform: true);
     dynamic convert(value) =>
         _enumDescriptor!.values.firstWhereOrNull((eValue) =>
             _enumDescriptor!.caseInsensitive == true
-                ? _transformValue(value, context).toLowerCase() ==
-                    _transformValue(eValue, context, doubleMapping: true)
-                        .toLowerCase()
-                : _transformValue(value, context) ==
-                    _transformValue(eValue, context, doubleMapping: true)) ??
+                ? transformJsonValue(value).toLowerCase() ==
+                    transformDescriptorValue(eValue).toLowerCase()
+                : transformJsonValue(value) ==
+                    transformDescriptorValue(eValue)) ??
         _enumDescriptor!.defaultValue;
     return jsonValue is Iterable
         ? jsonValue.map(convert).toList()
@@ -202,7 +205,7 @@ class EnumConverterShort implements ICustomConverter, ICustomEnumConverter {
   }
 
   dynamic _transformValue(dynamic value, DeserializationContext context,
-      {bool doubleMapping = false}) {
+      {bool doubleMapping = false, bool preTransform = false}) {
     final mapping = {};
     mapping.addAll(_enumDescriptor!.mapping);
     if (context.jsonPropertyMeta != null &&
@@ -214,7 +217,11 @@ class EnumConverterShort implements ICustomConverter, ICustomEnumConverter {
       value = _mapValue(value, mapping);
     }
     if (value is String) {
-      value = transformFieldName(value, context.caseStyle);
+      if (preTransform) {
+        value = transformIdentifierCaseStyle(
+            value, context.targetCaseStyle, context.sourceCaseStyle);
+      }
+      value = context.transformIdentifier(value);
     }
     return value;
   }
@@ -364,25 +371,25 @@ class MapConverter
   @override
   Map? fromJSON(dynamic jsonValue, DeserializationContext context) {
     var result = jsonValue;
-    final _typeInfo = context.typeInfo;
+    final typeInfo = context.typeInfo;
     if (jsonValue is String) {
       result = _jsonDecoder.convert(jsonValue);
     }
-    if (_typeInfo != null && result is Map) {
+    if (typeInfo != null && result is Map) {
       if (_instance != null && _instance is Map || _instance == null) {
         result = result.map((key, value) => MapEntry(
             _deserializeObject(
                 key,
                 context,
-                _typeInfo.parameters.isEmpty
+                typeInfo.parameters.isEmpty
                     ? String
-                    : _typeInfo.parameters.first),
+                    : typeInfo.parameters.first),
             _deserializeObject(
                 value,
                 context,
-                _typeInfo.parameters.isEmpty
+                typeInfo.parameters.isEmpty
                     ? dynamic
-                    : _typeInfo.parameters.last)));
+                    : typeInfo.parameters.last)));
       }
       if (_instance != null && _instance is Map) {
         result.forEach((key, value) => _instance![key] = value);

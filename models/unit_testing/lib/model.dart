@@ -1,9 +1,23 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 
 final compactOptions = SerializationOptions(indent: '');
+final defaultOptions = defaultSerializationOptions;
 
 @jsonSerializable
 enum Color { red, blue, gray, grayMetallic, green, brown, yellow, black, white }
+
+@jsonSerializable
+class Tire {
+  final num thickness;
+  final Color color;
+  const Tire(this.thickness, this.color);
+}
+
+@jsonSerializable
+class Wheel {
+  final Tire tire;
+  const Wheel(this.tire);
+}
 
 @jsonSerializable
 class Car {
@@ -16,6 +30,13 @@ class Car {
   Car? replacement;
 
   Car(this.model, this.color);
+}
+
+@jsonSerializable
+class ComposableCar {
+  final Wheel leftWheel;
+  final Wheel rightWheel;
+  const ComposableCar(this.leftWheel, this.rightWheel);
 }
 
 extension TitledCar on Car {

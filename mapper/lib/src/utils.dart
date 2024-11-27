@@ -217,6 +217,22 @@ class ClassInfo {
     return null;
   }
 
+  /// Returns all subtypes of [classInfo], this is transitive
+  static List<ClassInfo> getAllSubTypes(
+      Map<Type, ClassInfo> classes, ClassInfo classInfo) {
+    final result = <ClassInfo>[];
+    for (final subType in classes.values) {
+      try {
+        if (subType.classMirror.isSubtypeOf(classInfo.classMirror)) {
+          result.add(subType);
+        }
+      } catch (e) {
+        // Ignore no capability to check subtype
+      }
+    }
+    return result;
+  }
+
   MethodMirror? getJsonAnySetter([dynamic scheme]) =>
       getJsonSetter(null, scheme);
 
@@ -291,7 +307,7 @@ class ClassInfo {
   static const Set<String> _builtinPublicGetters = {'hashCode', 'runtimeType'};
   static bool _isGetterAndSetter(MethodMirror method, ClassMirror classMirror) {
     return method.isGetter &&
-        classMirror.instanceMembers[method.simpleName + '='] != null;
+        classMirror.instanceMembers['${method.simpleName}='] != null;
   }
 
   static bool _isPublicGetter(MethodMirror method) {
@@ -384,7 +400,7 @@ class ClassInfo {
   }
 
   bool isGetterOnly(String name) {
-    return classMirror.instanceMembers[name + '='] == null;
+    return classMirror.instanceMembers['$name='] == null;
   }
 
   DeclarationMirror? getDeclarationMirror(String name) {

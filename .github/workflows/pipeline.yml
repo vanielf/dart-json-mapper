@@ -1,16 +1,18 @@
 name: Pipeline
 
-on: push
+on:
+  workflow_dispatch:
+  push:
 
 jobs:
   test_mapper:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - name: '>> unit & performance tests for mapper <<'
         uses: k-paxian/dart-package-publisher@master
         with:
-          dryRunOnly: true
+          testRunOnly: true
           credentialJson: ${{ secrets.CREDENTIAL_JSON }}
           relativePath: perf-test
 
@@ -18,15 +20,12 @@ jobs:
     needs: [test_mapper]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          cp README.md ./mapper/README.md
-          cp banner.svg ./mapper/banner.svg
-          cp -f LICENSE ./mapper/LICENSE
+      - uses: actions/checkout@main
       - name: '>> publish mapper package to pub.dev <<'
         id: publish
         uses: k-paxian/dart-package-publisher@master
         with:
+          force: true
           credentialJson: ${{ secrets.CREDENTIAL_JSON }}
           relativePath: mapper
       - name: 'Commit release tag'
@@ -45,8 +44,8 @@ jobs:
         adapter: ["flutter", "built", "fixnum", "mobx"]
 
     steps:
-      - uses: actions/checkout@v2
-      - run: cp -f LICENSE ./adapters/${{ matrix.adapter }}/LICENSE
+      - uses: actions/checkout@main
+      - run: cp -f ./mapper/LICENSE ./adapters/${{ matrix.adapter }}/LICENSE
       - name: '>> test & publish adapter / ${{ matrix.adapter }} <<'
         id: publish
         uses: k-paxian/dart-package-publisher@master

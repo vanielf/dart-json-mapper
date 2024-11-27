@@ -1,6 +1,6 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:test/test.dart';
-import 'package:unit_testing/unit_testing.dart' show compactOptions, Car, Color;
+import 'package:unit_testing/unit_testing.dart' show Car, Color, Business;
 
 class UnAnnotated {}
 
@@ -24,6 +24,13 @@ class UserSettings {
 @jsonSerializable
 class UnAnnotatedEnumField {
   Sex sex = Sex.female;
+}
+
+@jsonSerializable
+class PartialPerson {
+  final String name;
+  final int age;
+  const PartialPerson(this.age, this.name);
 }
 
 @jsonSerializable
@@ -125,7 +132,7 @@ void testErrorHandling() {
         '[ignoreForSerialization], [ignoreIfNull], '
         '[Json.ignoreNullMembers] has no meaning', () {
       final instance = ObjectWithRequiredNullableField(value2: '');
-      final json = JsonMapper.serialize(instance, compactOptions);
+      final json = JsonMapper.serialize(instance);
       expect(json, '{"value":null,"value2":""}');
       expect(catchError(() => JsonMapper.serialize(instance)), null);
     });
@@ -140,14 +147,45 @@ void testErrorHandling() {
     test('[Suppress] Circular reference detection during serialization', () {
       final car = MyCar('VW', Color.blue);
       car.replacement = car;
-      expect(catchError(() => JsonMapper.serialize(car, compactOptions)), null);
+      expect(catchError(() => JsonMapper.serialize(car)), null);
+    });
+
+    test('Unable to create instance of class error handling - null arguments', () {
+      // given
+      final json = '{"name":"James"}';
+
+      // when
+      final error =
+          catchError(() => JsonMapper.deserialize<PartialPerson>(json));
+
+      // then
+      expect(
+          error.toString(),
+          'Unable to instantiate class \'PartialPerson\'\n'
+          '  with null positional arguments [age]');
+      expect(error, TypeMatcher<CannotCreateInstanceError>());
+    });
+
+    test('Unable to create instance of class error handling', () {
+      // given
+      final json = '{"name":["James"],"age":{}}';
+
+      // when
+      final error =
+      catchError(() => JsonMapper.deserialize<PartialPerson>(json));
+
+      // then
+      expect(
+          error.toString(),
+          'type \'_Map<String, dynamic>\' is not a subtype of type \'int\'');
+      expect(error, TypeMatcher<CannotCreateInstanceError>());
     });
 
     test('Allow using same object same level during serialization', () {
       final device = Device();
       final us = UserSettings([device, device]);
 
-      expect(catchError(() => JsonMapper.serialize(us, compactOptions)), null);
+      expect(catchError(() => JsonMapper.serialize(us)), null);
     });
 
     test('Missing annotation on class', () {
@@ -158,6 +196,24 @@ void testErrorHandling() {
     test('Missing target type for deserialization', () {
       expect(catchError(() => JsonMapper.deserialize('{}')),
           TypeMatcher<MissingTypeForDeserializationError>());
+    });
+
+    test('Discriminator property value is wrong', () {
+      // given
+      final json = '{"type":"p","a":1}';
+
+      // when
+      final error = catchError(() => JsonMapper.deserialize<Business>(json));
+
+      // then
+      expect(
+          error.toString(),
+          '"p" is not a valid discriminator value for type "Business".\n'
+          '\n'
+          'Valid values are:\n'
+          '  - BusinessType.private,\n'
+          '  - BusinessType.public');
+      expect(error, TypeMatcher<JsonMapperSubtypeError>());
     });
   });
 }

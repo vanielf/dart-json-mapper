@@ -1,7 +1,7 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:test/test.dart';
 import 'package:unit_testing/unit_testing.dart'
-    show compactOptions, Car, GettersOnly, Person;
+    show defaultOptions, Car, GettersOnly, Person;
 
 @jsonSerializable
 class IgnoreMembers {
@@ -16,13 +16,10 @@ class IgnoreMembers {
 
 @jsonSerializable
 class FieldAliasObject {
-  // alias ?? fullName ?? name
-  @JsonProperty(name: ['alias', 'fullName', 'name'])
-  final String? name;
-
-  const FieldAliasObject({
-    this.name,
-  });
+  @JsonProperty(
+    name: ['id', 'id_a', 'id_b', 'id_test'],
+  )
+  int id = 0;
 }
 
 @jsonSerializable
@@ -128,7 +125,7 @@ void testPartialDeserialization() {
 }''';
       // when
       final target = JsonMapper.deserialize<CarsPrefix>(json)!;
-      final targetJson = JsonMapper.serialize(target);
+      final targetJson = JsonMapper.serialize(target, defaultOptions);
 
       // then
       expect(targetJson, json);
@@ -179,14 +176,14 @@ void testPartialDeserialization() {
  "pagination_total": 1053,
  "cars": [
   {
-   "modelName": "Tesla X",
+   "model_name": "Tesla X",
    "color": "red"
   }
  ]
 }''';
       // when
       final target = JsonMapper.deserialize<CarsPrefixSnake>(json)!;
-      final targetJson = JsonMapper.serialize(target);
+      final targetJson = JsonMapper.serialize(target, defaultOptions);
 
       // then
       expect(targetJson, json);
@@ -212,7 +209,7 @@ void testPartialDeserialization() {
 }''';
       // when
       final target = JsonMapper.deserialize<Cars>(json)!;
-      final targetJson = JsonMapper.serialize(target);
+      final targetJson = JsonMapper.serialize(target, defaultOptions);
 
       // then
       expect(targetJson, json);
@@ -242,30 +239,30 @@ void testPartialDeserialization() {
       // given
       final instance = GettersOnly();
       // when
-      final json = JsonMapper.serialize(instance, compactOptions);
+      final json = JsonMapper.serialize(instance);
       // then
       expect(json, '''{"nextCatId":"c0","nextDogId":"h1"}''');
     });
 
     test('Field aliases, main ?? alias1 ?? alias2 ?? ...', () {
       // given
-      final json = '''{"alias":"007"}''';
-      final json2 = '''{"alias":null,"fullName":"James Bond"}''';
-      final json3 = '''{"name":"Bond"}''';
-      final json4 = '''{"name":"Bond","fullName":"James Bond"}''';
-      final instance = FieldAliasObject(name: '007');
-      // when
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
-      final target = JsonMapper.deserialize<FieldAliasObject>(json)!;
-      final target2 = JsonMapper.deserialize<FieldAliasObject>(json2)!;
-      final target3 = JsonMapper.deserialize<FieldAliasObject>(json3)!;
-      final target4 = JsonMapper.deserialize<FieldAliasObject>(json4)!;
-      // then
-      expect(targetJson, json);
-      expect(target.name, '007');
-      expect(target2.name, 'James Bond');
-      expect(target3.name, 'Bond');
-      expect(target4.name, 'James Bond');
+      List<List<dynamic>> cases = [
+        ['''{}''', 0],
+        ['''{"id": 90}''', 90],
+        ['''{"id": 90, "id_a": 91}''', 90],
+        ['''{"id_a": 90, "id_b": 91, "id_test": 92}''', 90],
+        ['''{"id_b": 90, "id_test": 91}''', 90],
+        ['''{"id_a": 91}''', 91],
+        ['''{"id_test": 92}''', 92],
+        ['''{"id_b": 93}''', 93],
+      ];
+      for (final testCase in cases) {
+        // when
+        final target = JsonMapper.deserialize<FieldAliasObject>(testCase.first);
+
+        // then
+        expect(target!.id, testCase.last);
+      }
     });
 
     test('Unmapped properties deserialization & serialization', () {
@@ -282,7 +279,7 @@ void testPartialDeserialization() {
       expect(instance.extraPropsMap['extra2'], 'xxx');
 
       // when
-      final json2 = JsonMapper.serialize(instance, compactOptions);
+      final json2 = JsonMapper.serialize(instance);
       // then
       expect(json2, json);
     });
@@ -299,7 +296,7 @@ void testPartialDeserialization() {
       expect(instance.getLastName(), 'Marley');
 
       // when
-      final targetJson = JsonMapper.serialize(instance, compactOptions);
+      final targetJson = JsonMapper.serialize(instance);
 
       // then
       expect(targetJson, json);
@@ -320,8 +317,8 @@ void testPartialDeserialization() {
       final expectedJson = '''{"name":"Bob"}''';
 
       // when
-      final targetJson = JsonMapper.serialize(
-          IgnoreMembers(name: 'Bob', title: 'Marley'), compactOptions);
+      final targetJson =
+          JsonMapper.serialize(IgnoreMembers(name: 'Bob', title: 'Marley'));
 
       // then
       expect(targetJson, expectedJson);

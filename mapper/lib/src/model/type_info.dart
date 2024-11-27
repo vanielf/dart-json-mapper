@@ -32,8 +32,7 @@ class TypeInfo {
 
   @override
   String toString() =>
-      'typeName: $typeName, parameters: $parameters, genericType: ' +
-      genericType.runtimeType.toString();
+      'typeName: $typeName, parameters: $parameters, genericType: ${genericType.runtimeType}';
 
   @override
   int get hashCode => typeName.hashCode;
@@ -63,10 +62,14 @@ class DefaultTypeInfoDecorator implements ITypeInfoDecorator {
       typeInfo.typeName == 'BigInt' || typeInfo.typeName == '_BigIntImpl';
 
   bool isRegExp(TypeInfo typeInfo) =>
-      typeInfo.typeName == 'RegExp' || typeInfo.typeName == '_RegExp';
+      typeInfo.typeName == 'JSSyntaxRegExp' ||
+      typeInfo.typeName == 'RegExp' ||
+      typeInfo.typeName == '_RegExp';
 
   bool isUri(TypeInfo typeInfo) =>
-      typeInfo.typeName == 'Uri' || typeInfo.typeName == '_SimpleUri';
+      typeInfo.typeName == 'Uri' ||
+      typeInfo.typeName == '_SimpleUri' ||
+      typeInfo.typeName == '_Uri';
 
   bool isHashSet(TypeInfo typeInfo) =>
       typeInfo.typeName!.startsWith('HashSet<') ||
@@ -107,11 +110,17 @@ class DefaultTypeInfoDecorator implements ITypeInfoDecorator {
     typeInfo.isDynamic = typeName == 'dynamic';
     typeInfo.isList = typeName.startsWith('_GrowableList<') ||
         typeName.startsWith('List<') ||
+        typeName.startsWith('JSArray<') ||
         isUnmodifiableListView(typeInfo) ||
         isCastList(typeInfo);
-    typeInfo.isSet = typeName.startsWith('Set<') || isHashSet(typeInfo);
+    typeInfo.isSet = typeName.startsWith('_Set<') ||
+        typeName.startsWith('Set<') ||
+        isHashSet(typeInfo);
     typeInfo.isMap = typeName == '_JsonMap' ||
+        typeName.startsWith('_Map<') ||
         typeName.startsWith('Map<') ||
+        typeName.startsWith('IdentityMap<') ||
+        typeName.startsWith('LinkedMap<') ||
         isHashMap(typeInfo) ||
         isLinkedHashMap(typeInfo) ||
         isUnmodifiableMapView(typeInfo);
@@ -172,13 +181,10 @@ class DefaultTypeInfoDecorator implements ITypeInfoDecorator {
         : [];
   }
 
-  String? detectGenericTypeName(TypeInfo typeInfo) =>
-      typeInfo.typeName!.contains('<')
-          ? typeInfo.typeName!.substring(0, typeInfo.typeName!.indexOf('<')) +
-              '<' +
-              typeInfo.parameters.map((x) => 'dynamic').join(', ') +
-              '>'
-          : null;
+  String? detectGenericTypeName(TypeInfo typeInfo) => typeInfo.typeName!
+          .contains('<')
+      ? '${typeInfo.typeName!.substring(0, typeInfo.typeName!.indexOf('<'))}<${typeInfo.parameters.map((x) => 'dynamic').join(', ')}>'
+      : null;
 
   Type? detectGenericType(TypeInfo typeInfo) {
     if (isUnmodifiableListView(typeInfo)) {

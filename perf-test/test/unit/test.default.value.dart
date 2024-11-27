@@ -1,7 +1,6 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:test/test.dart';
-
-import 'package:unit_testing/unit_testing.dart' show compactOptions, Car, Color;
+import 'package:unit_testing/unit_testing.dart' show defaultOptions, Car, Color;
 
 @jsonSerializable
 class CropArea {
@@ -57,13 +56,32 @@ class GlobalDefaultFields {
   int? id;
 }
 
+@jsonSerializable
+class DefaultValueOverrideTest {
+  @JsonProperty(defaultValue: 4)
+  int value;
+  DefaultValueOverrideTest(this.value);
+}
+
 void testDefaultValue() {
   group('[Verify default value cases]', () {
+    test('Override default value by the json value', () {
+      // given
+      final json1 = '''{"value":12}''';
+      final json2 = '''{}''';
+      // when
+      final target1 = JsonMapper.deserialize<DefaultValueOverrideTest>(json1);
+      final target2 = JsonMapper.deserialize<DefaultValueOverrideTest>(json2);
+      // then
+      expect(target1!.value, 12);
+      expect(target2!.value, 4);
+    });
+
     test('Ignore default field via field annotation', () {
       // given
       final instance = DefaultFields();
       // when
-      final target = JsonMapper.serialize(instance, compactOptions);
+      final target = JsonMapper.serialize(instance);
       // then
       expect(target, '{"id":1}');
     });
@@ -72,7 +90,7 @@ void testDefaultValue() {
       // given
       final instance = ManyDefaultFields();
       // when
-      final target = JsonMapper.serialize(instance, compactOptions);
+      final target = JsonMapper.serialize(instance);
       // then
       expect(target, '{}');
     });
@@ -94,12 +112,29 @@ void testDefaultValue() {
       final target = JsonMapper.serialize(instance,
           SerializationOptions(indent: '', processAnnotatedMembersOnly: true));
       // then
-      expect(target,
-          '{"cropArea":{"top":0.0,"left":1.0,"right":1.0,"bottom":0.0},"id":1}');
+      expect(
+          target,
+          kIsWeb
+              ? '{"cropArea":{"top":0,"left":1,"right":1,"bottom":0},"id":1}'
+              : '{"cropArea":{"top":0.0,"left":1.0,"right":1.0,"bottom":0.0},"id":1}');
     });
 
     test('Serialize Immutable class with DefaultValue provided', () {
       // given
+      final immutableJsonWeb = '''{
+ "cropArea": {
+  "top": 0,
+  "left": 1,
+  "right": 1,
+  "bottom": 0
+ },
+ "id": 1,
+ "name": "Bob",
+ "car": {
+  "modelName": "Audi",
+  "color": "green"
+ }
+}''';
       final immutableJson = '''{
  "cropArea": {
   "top": 0.0,
@@ -125,11 +160,11 @@ void testDefaultValue() {
       final i = ImmutableDefault(name: 'Bob', car: Car('Audi', Color.green));
 
       // when
-      final targetJson = JsonMapper.serialize(i);
+      final targetJson = JsonMapper.serialize(i, defaultOptions);
       final target = JsonMapper.deserialize<ImmutableDefault>(json)!;
 
       // then
-      expect(targetJson, immutableJson);
+      expect(targetJson, kIsWeb ? immutableJsonWeb : immutableJson);
 
       expect(target.id, 1);
       expect(target.cropArea, TypeMatcher<CropArea>());

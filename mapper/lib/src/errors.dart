@@ -1,10 +1,24 @@
-import './model/index.dart';
+import 'package:dart_json_mapper/dart_json_mapper.dart';
 
 abstract class JsonMapperError extends Error {}
 
 abstract class JsonFormatError extends JsonMapperError {
   factory JsonFormatError(DeserializationContext context,
       {FormatException? formatException}) = _JsonFormatErrorImpl;
+}
+
+class JsonMapperSubtypeError extends JsonMapperError {
+  JsonMapperSubtypeError(
+      this.discriminatorValue, this.validDiscriminators, this.superclass);
+
+  final dynamic discriminatorValue;
+  final List<dynamic> validDiscriminators;
+  final ClassInfo superclass;
+
+  @override
+  String toString() =>
+      '"$discriminatorValue" is not a valid discriminator value for type "${superclass.reflectedType}".\n\n'
+      'Valid values are:\n${validDiscriminators.map((x) => '  - $x').join(',\n')}';
 }
 
 class _JsonFormatErrorImpl extends JsonMapperError implements JsonFormatError {
@@ -106,4 +120,44 @@ class _MissingTypeForDeserializationErrorImpl extends JsonMapperError
       '(jsonString)\n'
       'OR Infere type via result variable like: TargetType target = '
       'JsonMapper.deserialize(jsonString)';
+}
+
+abstract class CannotCreateInstanceError extends JsonMapperError {
+  factory CannotCreateInstanceError(
+      TypeError typeError,
+      ClassInfo classInfo,
+      Iterable<String> positionalNullArguments,
+      Map<Symbol, dynamic> namedNullArguments) = _CannotCreateInstanceErrorImpl;
+}
+
+class _CannotCreateInstanceErrorImpl extends JsonMapperError
+    implements CannotCreateInstanceError {
+  final ClassInfo _classInfo;
+  final TypeError _typeError;
+  final Iterable<String> _positionalNullArguments;
+  final Map<Symbol, dynamic> _namedNullArguments;
+
+  _CannotCreateInstanceErrorImpl(
+      TypeError typeError,
+      ClassInfo classInfo,
+      Iterable<String> positionalNullArguments,
+      Map<Symbol, dynamic> namedNullArguments)
+      : _classInfo = classInfo,
+        _typeError = typeError,
+        _positionalNullArguments = positionalNullArguments,
+        _namedNullArguments = namedNullArguments;
+
+  @override
+  String toString() =>
+      _typeError.toString().startsWith("type 'Null' is not a subtype of type")
+          ? [
+              "Unable to instantiate class '${_classInfo.classMirror.simpleName}'",
+              _positionalNullArguments.isEmpty
+                  ? null
+                  : '  with null positional arguments [${_positionalNullArguments.join(', ')}]',
+              _namedNullArguments.keys.isEmpty
+                  ? null
+                  : '  with null named arguments [${_namedNullArguments.keys.join(', ')}]'
+            ].where((element) => element != null).join('\n')
+          : _typeError.toString();
 }

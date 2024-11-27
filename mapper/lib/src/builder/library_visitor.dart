@@ -6,6 +6,7 @@ import '../model/annotations.dart';
 class LibraryVisitor extends RecursiveElementVisitor {
   Map<num, ClassElement> visitedPublicClassElements = {};
   Map<num, ClassElement> visitedPublicAnnotatedClassElements = {};
+  Map<num, EnumElement> visitedPublicAnnotatedEnumElements = {};
   Map<String, LibraryElement?> visitedLibraries = {};
 
   final _annotationClassName = jsonSerializable.runtimeType.toString();
@@ -13,16 +14,23 @@ class LibraryVisitor extends RecursiveElementVisitor {
 
   LibraryVisitor(this.packageName);
 
-  @override
-  void visitExportElement(ExportElement element) {
-    _visitLibrary(element.exportedLibrary);
-    super.visitExportElement(element);
+  List<InterfaceElement> get visitedPublicAnnotatedElements {
+    return [
+      ...visitedPublicAnnotatedClassElements.values,
+      ...visitedPublicAnnotatedEnumElements.values
+    ];
   }
 
   @override
-  void visitImportElement(ImportElement element) {
+  void visitLibraryExportElement(LibraryExportElement element) {
+    _visitLibrary(element.exportedLibrary);
+    super.visitLibraryExportElement(element);
+  }
+
+  @override
+  void visitLibraryImportElement(LibraryImportElement element) {
     _visitLibrary(element.importedLibrary);
-    super.visitImportElement(element);
+    super.visitLibraryImportElement(element);
   }
 
   @override
@@ -32,16 +40,29 @@ class LibraryVisitor extends RecursiveElementVisitor {
       visitedPublicClassElements.putIfAbsent(element.id, () => element);
       if (element.metadata.isNotEmpty &&
           element.metadata.any((meta) =>
-              meta
-                  .computeConstantValue()!
-                  .type!
-                  .getDisplayString(withNullability: false) ==
+              meta.computeConstantValue()!.type!.getDisplayString() ==
               _annotationClassName)) {
         visitedPublicAnnotatedClassElements.putIfAbsent(
             element.id, () => element);
       }
     }
     super.visitClassElement(element);
+  }
+
+  @override
+  void visitEnumElement(EnumElement element) {
+    if (!element.isPrivate &&
+        !visitedPublicAnnotatedEnumElements.containsKey(element.id)) {
+      visitedPublicAnnotatedEnumElements.putIfAbsent(element.id, () => element);
+      if (element.metadata.isNotEmpty &&
+          element.metadata.any((meta) =>
+              meta.computeConstantValue()!.type!.getDisplayString() ==
+              _annotationClassName)) {
+        visitedPublicAnnotatedEnumElements.putIfAbsent(
+            element.id, () => element);
+      }
+    }
+    super.visitEnumElement(element);
   }
 
   void _visitLibrary(LibraryElement? element) {

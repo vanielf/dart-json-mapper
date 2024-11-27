@@ -1,7 +1,7 @@
 import 'package:meta/meta_meta.dart';
 import 'package:reflectable/reflectable.dart';
 
-import '../name_casing.dart';
+import '../identifier_casing.dart';
 import 'converters.dart';
 import 'value_decorators.dart';
 
@@ -10,7 +10,7 @@ const jsonConstructor = JsonConstructor();
 
 /// [JsonConstructor] is used as metadata, to annotate specific Dart class constructor
 /// being used for deserialization
-@Target({}) // should be [TargetKind.constructor] but it doesn't exists :(
+@Target({TargetKind.constructor})
 class JsonConstructor {
   /// Scheme marker to associate this meta information with particular mapping scheme
   final dynamic scheme;

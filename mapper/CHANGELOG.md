@@ -1,3 +1,119 @@
+## 2.2.14
+
+* bump dependencies to latest
+* Fix #227 Deserializing error: Unable to instantiate class. Improved error message
+
+## 2.2.13
+
+* bump dependencies to latest
+
+## 2.2.12+1
+
+* downgrade `meta` dependency to improve package compatibility
+
+## 2.2.12
+
+* bump dependencies
+
+## 2.2.11
+
+* bump dependencies
+
+## 2.2.10
+
+* bump dependencies 
+
+## 2.2.9
+
+* Improve web platform support #13
+
+## 2.2.8
+
+* Improve class instance creation error handling #211
+
+## 2.2.7+5
+
+* downgrade dependencies to improve package compatibility
+
+## 2.2.7+4
+
+* downgrade dependencies to improve package compatibility
+
+## 2.2.7+3
+
+* (fix): `JsonMapper.copyWith` doesn't respect deep merge #209
+
+## 2.2.7+2
+
+* bump dependencies
+* (fix): Add additional error handling for `discriminatorValue` mismatch errors #206
+
+## 2.2.7+1
+
+* bump dependencies
+* (fix): Problem converting enum with following uppercase character #203
+
+## 2.2.7
+
+* bump dependencies
+
+## 2.2.6+1
+
+* #196 Allow to pass global default options for serialization/deserialization to `initializeJsonMapper` method
+
+## 2.2.6
+
+* #195 Deserializing with String discriminatorProperty throws JsonFormatError(FormatException) 
+
+## 2.2.5+3
+
+* #193 (fix) downgrade dependencies to improve package compatibility
+
+## 2.2.5+2
+
+* pin analyzer 4.3.0 since further versions are incompatible with reflectable 3.0.9
+
+## 2.2.5+1
+
+* bump dependencies
+* #191 Incorrect detection of circular reference if hashCode has been overridden 
+ 
+## 2.2.5
+
+* bump dependencies
+
+## 2.2.4+2
+
+* #190 (fix) type 'Null' is not a subtype of type 'Object' when serializing Null element in List and Set
+
+## 2.2.4+1
+
+* #188 (fix) downgrade dependencies to improve package compatibility
+
+## 2.2.4
+
+* #187 (fix) defaultValue always overwrites the deserialized value
+
+## 2.2.3
+
+* #184 (fix) "It seems your class 'Uint8List' has not been annotated with @jsonSerializable" error when using `Uint8ListConverter`
+
+## 2.2.2+1
+
+* bump the dependencies versions
+
+## 2.2.2
+
+* #181 (fix) The `JsonProperty.name` support for aliases doesn't work as advertised
+
+## 2.2.1+3
+
+* bump the dependencies versions
+
+## 2.2.1+2
+
+* #178 (fix) Uncompilable `main.mapper.g.dart` when no classes has been annotated with `@jsonSerializable`
+
 ## 2.2.1+1
 
 * format code

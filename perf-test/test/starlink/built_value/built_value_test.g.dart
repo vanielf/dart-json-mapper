@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of perf_test.test;
+part of 'built_value_test.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -156,145 +156,145 @@ class _$SpaceTrackSerializer implements StructuredSerializer<SpaceTrack> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
         case 'CCSDS_OMM_VERS':
           result.cCSDSOMMVERS = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'COMMENT':
           result.cOMMENT = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'CREATION_DATE':
           result.cREATIONDATE = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'ORIGINATOR':
           result.oRIGINATOR = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'OBJECT_NAME':
           result.oBJECTNAME = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'OBJECT_ID':
           result.oBJECTID = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'CENTER_NAME':
           result.cENTERNAME = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'REF_FRAME':
           result.rEFFRAME = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'TIME_SYSTEM':
           result.tIMESYSTEM = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'MEAN_ELEMENT_THEORY':
           result.mEANELEMENTTHEORY = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'EPOCH':
           result.ePOCH = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'MEAN_MOTION':
           result.mEANMOTION = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'ECCENTRICITY':
           result.eCCENTRICITY = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'INCLINATION':
           result.iNCLINATION = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'RA_OF_ASC_NODE':
           result.rAOFASCNODE = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'ARG_OF_PERICENTER':
           result.aRGOFPERICENTER = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'MEAN_ANOMALY':
           result.mEANANOMALY = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'EPHEMERIS_TYPE':
           result.ePHEMERISTYPE = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'CLASSIFICATION_TYPE':
           result.cLASSIFICATIONTYPE = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'NORAD_CAT_ID':
           result.nORADCATID = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'ELEMENT_SET_NO':
           result.eLEMENTSETNO = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'REV_AT_EPOCH':
           result.rEVATEPOCH = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'BSTAR':
           result.bSTAR = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'MEAN_MOTION_DOT':
           result.mEANMOTIONDOT = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'MEAN_MOTION_DDOT':
           result.mEANMOTIONDDOT = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'SEMIMAJOR_AXIS':
           result.sEMIMAJORAXIS = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'PERIOD':
           result.pERIOD = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'APOAPSIS':
           result.aPOAPSIS = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'PERIAPSIS':
           result.pERIAPSIS = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'OBJECT_TYPE':
           result.oBJECTTYPE = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'RCS_SIZE':
           result.rCSSIZE = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'COUNTRY_CODE':
           result.cOUNTRYCODE = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'LAUNCH_DATE':
           result.lAUNCHDATE = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'SITE':
           result.sITE = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'DECAY_DATE':
           result.dECAYDATE = serializers.deserialize(value,
@@ -302,27 +302,27 @@ class _$SpaceTrackSerializer implements StructuredSerializer<SpaceTrack> {
           break;
         case 'DECAYED':
           result.dECAYED = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'FILE':
           result.fILE = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'GP_ID':
           result.gPID = serializers.deserialize(value,
-              specifiedType: const FullType(num)) as num;
+              specifiedType: const FullType(num))! as num;
           break;
         case 'TLE_LINE0':
           result.tLELINE0 = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'TLE_LINE1':
           result.tLELINE1 = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'TLE_LINE2':
           result.tLELINE2 = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -364,7 +364,7 @@ class _$RecordSerializer implements StructuredSerializer<Record> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -374,15 +374,15 @@ class _$RecordSerializer implements StructuredSerializer<Record> {
           break;
         case 'version':
           result.version = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'launch':
           result.launch = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -476,7 +476,7 @@ class _$SpaceTrack extends SpaceTrack {
   final String tLELINE2;
 
   factory _$SpaceTrack([void Function(SpaceTrackBuilder)? updates]) =>
-      (new SpaceTrackBuilder()..update(updates)).build();
+      (new SpaceTrackBuilder()..update(updates))._build();
 
   _$SpaceTrack._(
       {required this.cCSDSOMMVERS,
@@ -522,69 +522,70 @@ class _$SpaceTrack extends SpaceTrack {
       required this.tLELINE2})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        cCSDSOMMVERS, 'SpaceTrack', 'cCSDSOMMVERS');
-    BuiltValueNullFieldError.checkNotNull(cOMMENT, 'SpaceTrack', 'cOMMENT');
+        cCSDSOMMVERS, r'SpaceTrack', 'cCSDSOMMVERS');
+    BuiltValueNullFieldError.checkNotNull(cOMMENT, r'SpaceTrack', 'cOMMENT');
     BuiltValueNullFieldError.checkNotNull(
-        cREATIONDATE, 'SpaceTrack', 'cREATIONDATE');
+        cREATIONDATE, r'SpaceTrack', 'cREATIONDATE');
     BuiltValueNullFieldError.checkNotNull(
-        oRIGINATOR, 'SpaceTrack', 'oRIGINATOR');
+        oRIGINATOR, r'SpaceTrack', 'oRIGINATOR');
     BuiltValueNullFieldError.checkNotNull(
-        oBJECTNAME, 'SpaceTrack', 'oBJECTNAME');
-    BuiltValueNullFieldError.checkNotNull(oBJECTID, 'SpaceTrack', 'oBJECTID');
+        oBJECTNAME, r'SpaceTrack', 'oBJECTNAME');
+    BuiltValueNullFieldError.checkNotNull(oBJECTID, r'SpaceTrack', 'oBJECTID');
     BuiltValueNullFieldError.checkNotNull(
-        cENTERNAME, 'SpaceTrack', 'cENTERNAME');
-    BuiltValueNullFieldError.checkNotNull(rEFFRAME, 'SpaceTrack', 'rEFFRAME');
+        cENTERNAME, r'SpaceTrack', 'cENTERNAME');
+    BuiltValueNullFieldError.checkNotNull(rEFFRAME, r'SpaceTrack', 'rEFFRAME');
     BuiltValueNullFieldError.checkNotNull(
-        tIMESYSTEM, 'SpaceTrack', 'tIMESYSTEM');
+        tIMESYSTEM, r'SpaceTrack', 'tIMESYSTEM');
     BuiltValueNullFieldError.checkNotNull(
-        mEANELEMENTTHEORY, 'SpaceTrack', 'mEANELEMENTTHEORY');
-    BuiltValueNullFieldError.checkNotNull(ePOCH, 'SpaceTrack', 'ePOCH');
+        mEANELEMENTTHEORY, r'SpaceTrack', 'mEANELEMENTTHEORY');
+    BuiltValueNullFieldError.checkNotNull(ePOCH, r'SpaceTrack', 'ePOCH');
     BuiltValueNullFieldError.checkNotNull(
-        mEANMOTION, 'SpaceTrack', 'mEANMOTION');
+        mEANMOTION, r'SpaceTrack', 'mEANMOTION');
     BuiltValueNullFieldError.checkNotNull(
-        eCCENTRICITY, 'SpaceTrack', 'eCCENTRICITY');
+        eCCENTRICITY, r'SpaceTrack', 'eCCENTRICITY');
     BuiltValueNullFieldError.checkNotNull(
-        iNCLINATION, 'SpaceTrack', 'iNCLINATION');
+        iNCLINATION, r'SpaceTrack', 'iNCLINATION');
     BuiltValueNullFieldError.checkNotNull(
-        rAOFASCNODE, 'SpaceTrack', 'rAOFASCNODE');
+        rAOFASCNODE, r'SpaceTrack', 'rAOFASCNODE');
     BuiltValueNullFieldError.checkNotNull(
-        aRGOFPERICENTER, 'SpaceTrack', 'aRGOFPERICENTER');
+        aRGOFPERICENTER, r'SpaceTrack', 'aRGOFPERICENTER');
     BuiltValueNullFieldError.checkNotNull(
-        mEANANOMALY, 'SpaceTrack', 'mEANANOMALY');
+        mEANANOMALY, r'SpaceTrack', 'mEANANOMALY');
     BuiltValueNullFieldError.checkNotNull(
-        ePHEMERISTYPE, 'SpaceTrack', 'ePHEMERISTYPE');
+        ePHEMERISTYPE, r'SpaceTrack', 'ePHEMERISTYPE');
     BuiltValueNullFieldError.checkNotNull(
-        cLASSIFICATIONTYPE, 'SpaceTrack', 'cLASSIFICATIONTYPE');
+        cLASSIFICATIONTYPE, r'SpaceTrack', 'cLASSIFICATIONTYPE');
     BuiltValueNullFieldError.checkNotNull(
-        nORADCATID, 'SpaceTrack', 'nORADCATID');
+        nORADCATID, r'SpaceTrack', 'nORADCATID');
     BuiltValueNullFieldError.checkNotNull(
-        eLEMENTSETNO, 'SpaceTrack', 'eLEMENTSETNO');
+        eLEMENTSETNO, r'SpaceTrack', 'eLEMENTSETNO');
     BuiltValueNullFieldError.checkNotNull(
-        rEVATEPOCH, 'SpaceTrack', 'rEVATEPOCH');
-    BuiltValueNullFieldError.checkNotNull(bSTAR, 'SpaceTrack', 'bSTAR');
+        rEVATEPOCH, r'SpaceTrack', 'rEVATEPOCH');
+    BuiltValueNullFieldError.checkNotNull(bSTAR, r'SpaceTrack', 'bSTAR');
     BuiltValueNullFieldError.checkNotNull(
-        mEANMOTIONDOT, 'SpaceTrack', 'mEANMOTIONDOT');
+        mEANMOTIONDOT, r'SpaceTrack', 'mEANMOTIONDOT');
     BuiltValueNullFieldError.checkNotNull(
-        mEANMOTIONDDOT, 'SpaceTrack', 'mEANMOTIONDDOT');
+        mEANMOTIONDDOT, r'SpaceTrack', 'mEANMOTIONDDOT');
     BuiltValueNullFieldError.checkNotNull(
-        sEMIMAJORAXIS, 'SpaceTrack', 'sEMIMAJORAXIS');
-    BuiltValueNullFieldError.checkNotNull(pERIOD, 'SpaceTrack', 'pERIOD');
-    BuiltValueNullFieldError.checkNotNull(aPOAPSIS, 'SpaceTrack', 'aPOAPSIS');
-    BuiltValueNullFieldError.checkNotNull(pERIAPSIS, 'SpaceTrack', 'pERIAPSIS');
+        sEMIMAJORAXIS, r'SpaceTrack', 'sEMIMAJORAXIS');
+    BuiltValueNullFieldError.checkNotNull(pERIOD, r'SpaceTrack', 'pERIOD');
+    BuiltValueNullFieldError.checkNotNull(aPOAPSIS, r'SpaceTrack', 'aPOAPSIS');
     BuiltValueNullFieldError.checkNotNull(
-        oBJECTTYPE, 'SpaceTrack', 'oBJECTTYPE');
-    BuiltValueNullFieldError.checkNotNull(rCSSIZE, 'SpaceTrack', 'rCSSIZE');
+        pERIAPSIS, r'SpaceTrack', 'pERIAPSIS');
     BuiltValueNullFieldError.checkNotNull(
-        cOUNTRYCODE, 'SpaceTrack', 'cOUNTRYCODE');
+        oBJECTTYPE, r'SpaceTrack', 'oBJECTTYPE');
+    BuiltValueNullFieldError.checkNotNull(rCSSIZE, r'SpaceTrack', 'rCSSIZE');
     BuiltValueNullFieldError.checkNotNull(
-        lAUNCHDATE, 'SpaceTrack', 'lAUNCHDATE');
-    BuiltValueNullFieldError.checkNotNull(sITE, 'SpaceTrack', 'sITE');
-    BuiltValueNullFieldError.checkNotNull(dECAYED, 'SpaceTrack', 'dECAYED');
-    BuiltValueNullFieldError.checkNotNull(fILE, 'SpaceTrack', 'fILE');
-    BuiltValueNullFieldError.checkNotNull(gPID, 'SpaceTrack', 'gPID');
-    BuiltValueNullFieldError.checkNotNull(tLELINE0, 'SpaceTrack', 'tLELINE0');
-    BuiltValueNullFieldError.checkNotNull(tLELINE1, 'SpaceTrack', 'tLELINE1');
-    BuiltValueNullFieldError.checkNotNull(tLELINE2, 'SpaceTrack', 'tLELINE2');
+        cOUNTRYCODE, r'SpaceTrack', 'cOUNTRYCODE');
+    BuiltValueNullFieldError.checkNotNull(
+        lAUNCHDATE, r'SpaceTrack', 'lAUNCHDATE');
+    BuiltValueNullFieldError.checkNotNull(sITE, r'SpaceTrack', 'sITE');
+    BuiltValueNullFieldError.checkNotNull(dECAYED, r'SpaceTrack', 'dECAYED');
+    BuiltValueNullFieldError.checkNotNull(fILE, r'SpaceTrack', 'fILE');
+    BuiltValueNullFieldError.checkNotNull(gPID, r'SpaceTrack', 'gPID');
+    BuiltValueNullFieldError.checkNotNull(tLELINE0, r'SpaceTrack', 'tLELINE0');
+    BuiltValueNullFieldError.checkNotNull(tLELINE1, r'SpaceTrack', 'tLELINE1');
+    BuiltValueNullFieldError.checkNotNull(tLELINE2, r'SpaceTrack', 'tLELINE2');
   }
 
   @override
@@ -643,49 +644,55 @@ class _$SpaceTrack extends SpaceTrack {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                $jc(
-                                                                    $jc(
-                                                                        $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, cCSDSOMMVERS.hashCode), cOMMENT.hashCode), cREATIONDATE.hashCode), oRIGINATOR.hashCode), oBJECTNAME.hashCode), oBJECTID.hashCode), cENTERNAME.hashCode), rEFFRAME.hashCode), tIMESYSTEM.hashCode), mEANELEMENTTHEORY.hashCode), ePOCH.hashCode), mEANMOTION.hashCode), eCCENTRICITY.hashCode), iNCLINATION.hashCode), rAOFASCNODE.hashCode), aRGOFPERICENTER.hashCode), mEANANOMALY.hashCode), ePHEMERISTYPE.hashCode), cLASSIFICATIONTYPE.hashCode), nORADCATID.hashCode), eLEMENTSETNO.hashCode), rEVATEPOCH.hashCode),
-                                                                                bSTAR.hashCode),
-                                                                            mEANMOTIONDOT.hashCode),
-                                                                        mEANMOTIONDDOT.hashCode),
-                                                                    sEMIMAJORAXIS.hashCode),
-                                                                pERIOD.hashCode),
-                                                            aPOAPSIS.hashCode),
-                                                        pERIAPSIS.hashCode),
-                                                    oBJECTTYPE.hashCode),
-                                                rCSSIZE.hashCode),
-                                            cOUNTRYCODE.hashCode),
-                                        lAUNCHDATE.hashCode),
-                                    sITE.hashCode),
-                                dECAYDATE.hashCode),
-                            dECAYED.hashCode),
-                        fILE.hashCode),
-                    gPID.hashCode),
-                tLELINE0.hashCode),
-            tLELINE1.hashCode),
-        tLELINE2.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, cCSDSOMMVERS.hashCode);
+    _$hash = $jc(_$hash, cOMMENT.hashCode);
+    _$hash = $jc(_$hash, cREATIONDATE.hashCode);
+    _$hash = $jc(_$hash, oRIGINATOR.hashCode);
+    _$hash = $jc(_$hash, oBJECTNAME.hashCode);
+    _$hash = $jc(_$hash, oBJECTID.hashCode);
+    _$hash = $jc(_$hash, cENTERNAME.hashCode);
+    _$hash = $jc(_$hash, rEFFRAME.hashCode);
+    _$hash = $jc(_$hash, tIMESYSTEM.hashCode);
+    _$hash = $jc(_$hash, mEANELEMENTTHEORY.hashCode);
+    _$hash = $jc(_$hash, ePOCH.hashCode);
+    _$hash = $jc(_$hash, mEANMOTION.hashCode);
+    _$hash = $jc(_$hash, eCCENTRICITY.hashCode);
+    _$hash = $jc(_$hash, iNCLINATION.hashCode);
+    _$hash = $jc(_$hash, rAOFASCNODE.hashCode);
+    _$hash = $jc(_$hash, aRGOFPERICENTER.hashCode);
+    _$hash = $jc(_$hash, mEANANOMALY.hashCode);
+    _$hash = $jc(_$hash, ePHEMERISTYPE.hashCode);
+    _$hash = $jc(_$hash, cLASSIFICATIONTYPE.hashCode);
+    _$hash = $jc(_$hash, nORADCATID.hashCode);
+    _$hash = $jc(_$hash, eLEMENTSETNO.hashCode);
+    _$hash = $jc(_$hash, rEVATEPOCH.hashCode);
+    _$hash = $jc(_$hash, bSTAR.hashCode);
+    _$hash = $jc(_$hash, mEANMOTIONDOT.hashCode);
+    _$hash = $jc(_$hash, mEANMOTIONDDOT.hashCode);
+    _$hash = $jc(_$hash, sEMIMAJORAXIS.hashCode);
+    _$hash = $jc(_$hash, pERIOD.hashCode);
+    _$hash = $jc(_$hash, aPOAPSIS.hashCode);
+    _$hash = $jc(_$hash, pERIAPSIS.hashCode);
+    _$hash = $jc(_$hash, oBJECTTYPE.hashCode);
+    _$hash = $jc(_$hash, rCSSIZE.hashCode);
+    _$hash = $jc(_$hash, cOUNTRYCODE.hashCode);
+    _$hash = $jc(_$hash, lAUNCHDATE.hashCode);
+    _$hash = $jc(_$hash, sITE.hashCode);
+    _$hash = $jc(_$hash, dECAYDATE.hashCode);
+    _$hash = $jc(_$hash, dECAYED.hashCode);
+    _$hash = $jc(_$hash, fILE.hashCode);
+    _$hash = $jc(_$hash, gPID.hashCode);
+    _$hash = $jc(_$hash, tLELINE0.hashCode);
+    _$hash = $jc(_$hash, tLELINE1.hashCode);
+    _$hash = $jc(_$hash, tLELINE2.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('SpaceTrack')
+    return (newBuiltValueToStringHelper(r'SpaceTrack')
           ..add('cCSDSOMMVERS', cCSDSOMMVERS)
           ..add('cOMMENT', cOMMENT)
           ..add('cREATIONDATE', cREATIONDATE)
@@ -968,59 +975,61 @@ class SpaceTrackBuilder implements Builder<SpaceTrack, SpaceTrackBuilder> {
   }
 
   @override
-  _$SpaceTrack build() {
+  SpaceTrack build() => _build();
+
+  _$SpaceTrack _build() {
     final _$result = _$v ??
         new _$SpaceTrack._(
             cCSDSOMMVERS: BuiltValueNullFieldError.checkNotNull(
-                cCSDSOMMVERS, 'SpaceTrack', 'cCSDSOMMVERS'),
+                cCSDSOMMVERS, r'SpaceTrack', 'cCSDSOMMVERS'),
             cOMMENT: BuiltValueNullFieldError.checkNotNull(
-                cOMMENT, 'SpaceTrack', 'cOMMENT'),
+                cOMMENT, r'SpaceTrack', 'cOMMENT'),
             cREATIONDATE: BuiltValueNullFieldError.checkNotNull(
-                cREATIONDATE, 'SpaceTrack', 'cREATIONDATE'),
+                cREATIONDATE, r'SpaceTrack', 'cREATIONDATE'),
             oRIGINATOR: BuiltValueNullFieldError.checkNotNull(
-                oRIGINATOR, 'SpaceTrack', 'oRIGINATOR'),
+                oRIGINATOR, r'SpaceTrack', 'oRIGINATOR'),
             oBJECTNAME: BuiltValueNullFieldError.checkNotNull(
-                oBJECTNAME, 'SpaceTrack', 'oBJECTNAME'),
+                oBJECTNAME, r'SpaceTrack', 'oBJECTNAME'),
             oBJECTID: BuiltValueNullFieldError.checkNotNull(
-                oBJECTID, 'SpaceTrack', 'oBJECTID'),
+                oBJECTID, r'SpaceTrack', 'oBJECTID'),
             cENTERNAME: BuiltValueNullFieldError.checkNotNull(
-                cENTERNAME, 'SpaceTrack', 'cENTERNAME'),
+                cENTERNAME, r'SpaceTrack', 'cENTERNAME'),
             rEFFRAME: BuiltValueNullFieldError.checkNotNull(
-                rEFFRAME, 'SpaceTrack', 'rEFFRAME'),
+                rEFFRAME, r'SpaceTrack', 'rEFFRAME'),
             tIMESYSTEM: BuiltValueNullFieldError.checkNotNull(
-                tIMESYSTEM, 'SpaceTrack', 'tIMESYSTEM'),
-            mEANELEMENTTHEORY: BuiltValueNullFieldError.checkNotNull(mEANELEMENTTHEORY, 'SpaceTrack', 'mEANELEMENTTHEORY'),
-            ePOCH: BuiltValueNullFieldError.checkNotNull(ePOCH, 'SpaceTrack', 'ePOCH'),
-            mEANMOTION: BuiltValueNullFieldError.checkNotNull(mEANMOTION, 'SpaceTrack', 'mEANMOTION'),
-            eCCENTRICITY: BuiltValueNullFieldError.checkNotNull(eCCENTRICITY, 'SpaceTrack', 'eCCENTRICITY'),
-            iNCLINATION: BuiltValueNullFieldError.checkNotNull(iNCLINATION, 'SpaceTrack', 'iNCLINATION'),
-            rAOFASCNODE: BuiltValueNullFieldError.checkNotNull(rAOFASCNODE, 'SpaceTrack', 'rAOFASCNODE'),
-            aRGOFPERICENTER: BuiltValueNullFieldError.checkNotNull(aRGOFPERICENTER, 'SpaceTrack', 'aRGOFPERICENTER'),
-            mEANANOMALY: BuiltValueNullFieldError.checkNotNull(mEANANOMALY, 'SpaceTrack', 'mEANANOMALY'),
-            ePHEMERISTYPE: BuiltValueNullFieldError.checkNotNull(ePHEMERISTYPE, 'SpaceTrack', 'ePHEMERISTYPE'),
-            cLASSIFICATIONTYPE: BuiltValueNullFieldError.checkNotNull(cLASSIFICATIONTYPE, 'SpaceTrack', 'cLASSIFICATIONTYPE'),
-            nORADCATID: BuiltValueNullFieldError.checkNotNull(nORADCATID, 'SpaceTrack', 'nORADCATID'),
-            eLEMENTSETNO: BuiltValueNullFieldError.checkNotNull(eLEMENTSETNO, 'SpaceTrack', 'eLEMENTSETNO'),
-            rEVATEPOCH: BuiltValueNullFieldError.checkNotNull(rEVATEPOCH, 'SpaceTrack', 'rEVATEPOCH'),
-            bSTAR: BuiltValueNullFieldError.checkNotNull(bSTAR, 'SpaceTrack', 'bSTAR'),
-            mEANMOTIONDOT: BuiltValueNullFieldError.checkNotNull(mEANMOTIONDOT, 'SpaceTrack', 'mEANMOTIONDOT'),
-            mEANMOTIONDDOT: BuiltValueNullFieldError.checkNotNull(mEANMOTIONDDOT, 'SpaceTrack', 'mEANMOTIONDDOT'),
-            sEMIMAJORAXIS: BuiltValueNullFieldError.checkNotNull(sEMIMAJORAXIS, 'SpaceTrack', 'sEMIMAJORAXIS'),
-            pERIOD: BuiltValueNullFieldError.checkNotNull(pERIOD, 'SpaceTrack', 'pERIOD'),
-            aPOAPSIS: BuiltValueNullFieldError.checkNotNull(aPOAPSIS, 'SpaceTrack', 'aPOAPSIS'),
-            pERIAPSIS: BuiltValueNullFieldError.checkNotNull(pERIAPSIS, 'SpaceTrack', 'pERIAPSIS'),
-            oBJECTTYPE: BuiltValueNullFieldError.checkNotNull(oBJECTTYPE, 'SpaceTrack', 'oBJECTTYPE'),
-            rCSSIZE: BuiltValueNullFieldError.checkNotNull(rCSSIZE, 'SpaceTrack', 'rCSSIZE'),
-            cOUNTRYCODE: BuiltValueNullFieldError.checkNotNull(cOUNTRYCODE, 'SpaceTrack', 'cOUNTRYCODE'),
-            lAUNCHDATE: BuiltValueNullFieldError.checkNotNull(lAUNCHDATE, 'SpaceTrack', 'lAUNCHDATE'),
-            sITE: BuiltValueNullFieldError.checkNotNull(sITE, 'SpaceTrack', 'sITE'),
+                tIMESYSTEM, r'SpaceTrack', 'tIMESYSTEM'),
+            mEANELEMENTTHEORY: BuiltValueNullFieldError.checkNotNull(mEANELEMENTTHEORY, r'SpaceTrack', 'mEANELEMENTTHEORY'),
+            ePOCH: BuiltValueNullFieldError.checkNotNull(ePOCH, r'SpaceTrack', 'ePOCH'),
+            mEANMOTION: BuiltValueNullFieldError.checkNotNull(mEANMOTION, r'SpaceTrack', 'mEANMOTION'),
+            eCCENTRICITY: BuiltValueNullFieldError.checkNotNull(eCCENTRICITY, r'SpaceTrack', 'eCCENTRICITY'),
+            iNCLINATION: BuiltValueNullFieldError.checkNotNull(iNCLINATION, r'SpaceTrack', 'iNCLINATION'),
+            rAOFASCNODE: BuiltValueNullFieldError.checkNotNull(rAOFASCNODE, r'SpaceTrack', 'rAOFASCNODE'),
+            aRGOFPERICENTER: BuiltValueNullFieldError.checkNotNull(aRGOFPERICENTER, r'SpaceTrack', 'aRGOFPERICENTER'),
+            mEANANOMALY: BuiltValueNullFieldError.checkNotNull(mEANANOMALY, r'SpaceTrack', 'mEANANOMALY'),
+            ePHEMERISTYPE: BuiltValueNullFieldError.checkNotNull(ePHEMERISTYPE, r'SpaceTrack', 'ePHEMERISTYPE'),
+            cLASSIFICATIONTYPE: BuiltValueNullFieldError.checkNotNull(cLASSIFICATIONTYPE, r'SpaceTrack', 'cLASSIFICATIONTYPE'),
+            nORADCATID: BuiltValueNullFieldError.checkNotNull(nORADCATID, r'SpaceTrack', 'nORADCATID'),
+            eLEMENTSETNO: BuiltValueNullFieldError.checkNotNull(eLEMENTSETNO, r'SpaceTrack', 'eLEMENTSETNO'),
+            rEVATEPOCH: BuiltValueNullFieldError.checkNotNull(rEVATEPOCH, r'SpaceTrack', 'rEVATEPOCH'),
+            bSTAR: BuiltValueNullFieldError.checkNotNull(bSTAR, r'SpaceTrack', 'bSTAR'),
+            mEANMOTIONDOT: BuiltValueNullFieldError.checkNotNull(mEANMOTIONDOT, r'SpaceTrack', 'mEANMOTIONDOT'),
+            mEANMOTIONDDOT: BuiltValueNullFieldError.checkNotNull(mEANMOTIONDDOT, r'SpaceTrack', 'mEANMOTIONDDOT'),
+            sEMIMAJORAXIS: BuiltValueNullFieldError.checkNotNull(sEMIMAJORAXIS, r'SpaceTrack', 'sEMIMAJORAXIS'),
+            pERIOD: BuiltValueNullFieldError.checkNotNull(pERIOD, r'SpaceTrack', 'pERIOD'),
+            aPOAPSIS: BuiltValueNullFieldError.checkNotNull(aPOAPSIS, r'SpaceTrack', 'aPOAPSIS'),
+            pERIAPSIS: BuiltValueNullFieldError.checkNotNull(pERIAPSIS, r'SpaceTrack', 'pERIAPSIS'),
+            oBJECTTYPE: BuiltValueNullFieldError.checkNotNull(oBJECTTYPE, r'SpaceTrack', 'oBJECTTYPE'),
+            rCSSIZE: BuiltValueNullFieldError.checkNotNull(rCSSIZE, r'SpaceTrack', 'rCSSIZE'),
+            cOUNTRYCODE: BuiltValueNullFieldError.checkNotNull(cOUNTRYCODE, r'SpaceTrack', 'cOUNTRYCODE'),
+            lAUNCHDATE: BuiltValueNullFieldError.checkNotNull(lAUNCHDATE, r'SpaceTrack', 'lAUNCHDATE'),
+            sITE: BuiltValueNullFieldError.checkNotNull(sITE, r'SpaceTrack', 'sITE'),
             dECAYDATE: dECAYDATE,
-            dECAYED: BuiltValueNullFieldError.checkNotNull(dECAYED, 'SpaceTrack', 'dECAYED'),
-            fILE: BuiltValueNullFieldError.checkNotNull(fILE, 'SpaceTrack', 'fILE'),
-            gPID: BuiltValueNullFieldError.checkNotNull(gPID, 'SpaceTrack', 'gPID'),
-            tLELINE0: BuiltValueNullFieldError.checkNotNull(tLELINE0, 'SpaceTrack', 'tLELINE0'),
-            tLELINE1: BuiltValueNullFieldError.checkNotNull(tLELINE1, 'SpaceTrack', 'tLELINE1'),
-            tLELINE2: BuiltValueNullFieldError.checkNotNull(tLELINE2, 'SpaceTrack', 'tLELINE2'));
+            dECAYED: BuiltValueNullFieldError.checkNotNull(dECAYED, r'SpaceTrack', 'dECAYED'),
+            fILE: BuiltValueNullFieldError.checkNotNull(fILE, r'SpaceTrack', 'fILE'),
+            gPID: BuiltValueNullFieldError.checkNotNull(gPID, r'SpaceTrack', 'gPID'),
+            tLELINE0: BuiltValueNullFieldError.checkNotNull(tLELINE0, r'SpaceTrack', 'tLELINE0'),
+            tLELINE1: BuiltValueNullFieldError.checkNotNull(tLELINE1, r'SpaceTrack', 'tLELINE1'),
+            tLELINE2: BuiltValueNullFieldError.checkNotNull(tLELINE2, r'SpaceTrack', 'tLELINE2'));
     replace(_$result);
     return _$result;
   }
@@ -1037,7 +1046,7 @@ class _$Record extends Record {
   final String id;
 
   factory _$Record([void Function(RecordBuilder)? updates]) =>
-      (new RecordBuilder()..update(updates)).build();
+      (new RecordBuilder()..update(updates))._build();
 
   _$Record._(
       {required this.spaceTrack,
@@ -1045,10 +1054,10 @@ class _$Record extends Record {
       required this.launch,
       required this.id})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(spaceTrack, 'Record', 'spaceTrack');
-    BuiltValueNullFieldError.checkNotNull(version, 'Record', 'version');
-    BuiltValueNullFieldError.checkNotNull(launch, 'Record', 'launch');
-    BuiltValueNullFieldError.checkNotNull(id, 'Record', 'id');
+    BuiltValueNullFieldError.checkNotNull(spaceTrack, r'Record', 'spaceTrack');
+    BuiltValueNullFieldError.checkNotNull(version, r'Record', 'version');
+    BuiltValueNullFieldError.checkNotNull(launch, r'Record', 'launch');
+    BuiltValueNullFieldError.checkNotNull(id, r'Record', 'id');
   }
 
   @override
@@ -1070,15 +1079,18 @@ class _$Record extends Record {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, spaceTrack.hashCode), version.hashCode),
-            launch.hashCode),
-        id.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, spaceTrack.hashCode);
+    _$hash = $jc(_$hash, version.hashCode);
+    _$hash = $jc(_$hash, launch.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Record')
+    return (newBuiltValueToStringHelper(r'Record')
           ..add('spaceTrack', spaceTrack)
           ..add('version', version)
           ..add('launch', launch)
@@ -1134,17 +1146,19 @@ class RecordBuilder implements Builder<Record, RecordBuilder> {
   }
 
   @override
-  _$Record build() {
+  Record build() => _build();
+
+  _$Record _build() {
     _$Record _$result;
     try {
       _$result = _$v ??
           new _$Record._(
               spaceTrack: spaceTrack.build(),
               version: BuiltValueNullFieldError.checkNotNull(
-                  version, 'Record', 'version'),
+                  version, r'Record', 'version'),
               launch: BuiltValueNullFieldError.checkNotNull(
-                  launch, 'Record', 'launch'),
-              id: BuiltValueNullFieldError.checkNotNull(id, 'Record', 'id'));
+                  launch, r'Record', 'launch'),
+              id: BuiltValueNullFieldError.checkNotNull(id, r'Record', 'id'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -1152,7 +1166,7 @@ class RecordBuilder implements Builder<Record, RecordBuilder> {
         spaceTrack.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Record', _$failedField, e.toString());
+            r'Record', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -1161,4 +1175,4 @@ class RecordBuilder implements Builder<Record, RecordBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint
